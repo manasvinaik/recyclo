@@ -29,16 +29,20 @@ class ScoreSerializer(serializers.ModelSerializer):
 
 # ---------------------- Video Serializers ----------------------
 class VideoLessonSerializer(serializers.ModelSerializer):
+    module_category = serializers.CharField(source="module.category", read_only=True)
     module_title = serializers.CharField(source="module.title", read_only=True)
+
     class Meta:
         model = VideoLesson
-        fields = ["id", "title", "type", "content", "module", "module_title"]
+        fields = ["id", "title", "type", "content", "module", "module_title", "module_category"]
 
 class VideoModuleSerializer(serializers.ModelSerializer):
     lessons = VideoLessonSerializer(many=True, read_only=True)
+    category = serializers.CharField(read_only=True)  # ✅ remove source="category"
+
     class Meta:
         model = VideoModule
-        fields = ["id", "title", "description", "lessons"]
+        fields = ["id", "title", "description", "category", "lessons"]
 
 class VideoProgressSerializer(serializers.ModelSerializer):
     class Meta:

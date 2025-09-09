@@ -1,56 +1,90 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link, useLocation } from "react-router-dom";
+import { useParams, useLocation, Link } from "react-router-dom";
 import { fetchVideoLessons } from "../services/api";
 
 function VideoRoadmap() {
-  const { id: moduleId } = useParams();
+  const { id } = useParams(); // moduleId
   const location = useLocation();
-  const username = location.state?.username || "guestuser"; // fallback
-  const [module, setModule] = useState(null);
+  const username = location.state?.username || "guestuser";
   const [lessons, setLessons] = useState([]);
+  const [category, setCategory] = useState("");
 
   useEffect(() => {
-    const loadModuleLessons = async () => {
-      // fetch lessons from DB
-      const lessonsData = await fetchVideoLessons(moduleId);
-      setLessons(lessonsData);
-
-      // set module title if any lessons exist
-      if (lessonsData.length > 0) {
-        setModule({ title: lessonsData[0].module_title });
+    fetchVideoLessons(id).then((data) => {
+      setLessons(data);
+      if (data.length > 0) {
+        setCategory(data[0].module_category); // coming from serializer
       }
-    };
-
-    loadModuleLessons();
-  }, [moduleId]);
-
-  if (!module) return <h2 style={{ textAlign: "center" }}>Module not found!</h2>;
+    });
+  }, [id, username]);
 
   return (
-    <div style={{ padding: "2rem", textAlign: "center" }}>
-      <h2>{module.title}</h2>
-      <h3>Lessons</h3>
+    <div style={{ padding: "2rem", maxWidth: "800px", margin: "0 auto" }}>
+      <h2 style={{ textAlign: "center", marginBottom: "2rem", color: "#047857" }}>
+        Module Roadmap
+      </h2>
 
       <ul style={{ listStyle: "none", padding: 0 }}>
         {lessons.map((lesson) => (
-          <li key={lesson.id} style={{ margin: "0.5rem 0" }}>
+          <li
+            key={lesson.id}
+            style={{
+              marginBottom: "1rem",
+              background: "#f0fdf4",
+              padding: "1rem 1.5rem",
+              borderRadius: "8px",
+              boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
+              transition: "transform 0.2s, box-shadow 0.2s",
+            }}
+          >
             <Link
-              to={`/game/videos/${moduleId}/${lesson.id}`}
+              to={`/game/videos/${id}/${lesson.id}`}
               state={{ username }}
               style={{
-                padding: "0.5rem 1rem",
-                border: "1px solid #ccc",
-                borderRadius: "6px",
                 textDecoration: "none",
-                display: "inline-block",
-                margin: "0.25rem",
+                color: "#065f46",
+                fontWeight: "500",
               }}
             >
-              {lesson.title}
+              {lesson.title} {lesson.watched && <span>✅</span>}
             </Link>
           </li>
         ))}
       </ul>
+
+      {category && (
+        <div
+          style={{
+            marginTop: "3rem",
+            padding: "1.5rem",
+            background: "#e0f2fe",
+            borderRadius: "10px",
+            textAlign: "center",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+          }}
+        >
+          <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
+            💚 Check out eco-friendly products inspired by this module:{" "}
+            <b>{category}</b>
+          </p>
+          <Link
+            to={`/products?category=${encodeURIComponent(category)}`}
+            style={{
+              padding: "0.75rem 1.5rem",
+              background: "#047857",
+              color: "#fff",
+              borderRadius: "8px",
+              textDecoration: "none",
+              fontWeight: "bold",
+              transition: "background 0.2s",
+            }}
+            onMouseEnter={(e) => (e.target.style.background = "#065f46")}
+            onMouseLeave={(e) => (e.target.style.background = "#047857")}
+          >
+            Shop {category}
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

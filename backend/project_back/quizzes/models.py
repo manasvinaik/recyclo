@@ -36,8 +36,17 @@ class Score(models.Model):
 
 
 class VideoModule(models.Model):
+    CATEGORIES = [
+        ("organic", "Organic Finds"),
+        ("bamboo", "Bamboo & Wood"),
+        ("plasticfree", "Plastic-Free Living"),
+        ("naturalcare", "Natural Care"),
+        ("upcycled", "Upcycled Style"),
+    ]
+
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
+    category = models.CharField(max_length=50, choices=CATEGORIES, default="organic")
 
     def __str__(self):
         return self.title
