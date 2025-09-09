@@ -16,30 +16,39 @@ import VideoRoadmap from "./pages/VideoRoadmap";
 import VideoLesson from "./pages/VideoLesson";
 import Leaderboard from "./pages/Leaderboard";
 
-
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/community" element={<Feed />} />
-        <Route path="/products" element={<ProductList />} />
-        <Route path="/products/:id" element={<ProductDetail />} />
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/checkout" element={<Checkout />} />
+    <div className="App">
 
-        <Route path="/game" element={<GameHome />} />
-        <Route path="/game/trash" element={<TrashGame />} />
-        <Route path="/game/videos" element={<VideoModule />} />
-        <Route path="/game/quizzes" element={<Quiz />} />
-        <Route path="/game/quizzes/:id" element={<QuizDetail />} />
-        <Route path="/game/videos" element={<VideoModule />} />
-        <Route path="/game/videos/:id" element={<VideoRoadmap />} />
-        <Route path="/game/videos/:moduleId/:lessonId" element={<VideoLesson />} />
-        <Route path="/leaderboard" element={<Leaderboard />} />
-      </Routes>
-    </Router>
+      {/* Dialogflow Chatbot */}
+      <df-messenger
+        intent="WELCOME"
+        chat-title="Waste Helper"
+        agent-id="7c4f1bf1-efdb-41b6-aab6-21a8074aff48"
+        language-code="en"
+      ></df-messenger>
+
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/community" element={<Feed />} />
+          <Route path="/products" element={<ProductList />} />
+          <Route path="/products/:id" element={<ProductDetail />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/checkout" element={<Checkout />} />
+
+          <Route path="/game" element={<GameHome />} />
+          <Route path="/game/trash" element={<TrashGame />} />
+          <Route path="/game/videos" element={<VideoModule />} />
+          <Route path="/game/quizzes" element={<Quiz />} />
+          <Route path="/game/quizzes/:id" element={<QuizDetail />} />
+          <Route path="/game/videos/:id" element={<VideoRoadmap />} />
+          <Route path="/game/videos/:moduleId/:lessonId" element={<VideoLesson />} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 
