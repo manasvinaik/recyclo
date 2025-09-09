@@ -22,7 +22,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include("rebackapp.urls")),   # from first file
-    path("api/", include("products.urls")),    # merged from second file
+    path("api/", include("products.urls")), 
+    path("api/", include("quizzes.urls")),   # merged from second file
 ]
 
 # Serve media files in development

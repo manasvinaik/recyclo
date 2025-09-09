@@ -28,7 +28,7 @@ const Home = () => {
   <div className="cards-container">
 
     {/* Eco Learning Card */}
-    <Link to="/gaming" className="nav-card learning-card">
+    <Link to="/game" className="nav-card learning-card">
       <div className="card-icon">
         🎮
       </div>

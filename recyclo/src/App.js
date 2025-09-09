@@ -7,6 +7,14 @@ import ProductList from "./pages/ProductList";
 import ProductDetail from "./pages/ProductDetail";
 import CartPage from "./pages/CartPage";
 import Checkout from "./pages/Checkout";
+import GameHome from "./pages/GameHome";
+import TrashGame from "./pages/TrashGame";
+import VideoModule from "./pages/VideoModule";
+import Quiz from "./pages/Quiz";
+import QuizDetail from "./pages/QuizDetail";
+import VideoRoadmap from "./pages/VideoRoadmap";
+import VideoLesson from "./pages/VideoLesson";
+import Leaderboard from "./pages/Leaderboard";
 
 
 function App() {
@@ -20,6 +28,16 @@ function App() {
         <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<Checkout />} />
+
+        <Route path="/game" element={<GameHome />} />
+        <Route path="/game/trash" element={<TrashGame />} />
+        <Route path="/game/videos" element={<VideoModule />} />
+        <Route path="/game/quizzes" element={<Quiz />} />
+        <Route path="/game/quizzes/:id" element={<QuizDetail />} />
+        <Route path="/game/videos" element={<VideoModule />} />
+        <Route path="/game/videos/:id" element={<VideoRoadmap />} />
+        <Route path="/game/videos/:moduleId/:lessonId" element={<VideoLesson />} />
+        <Route path="/leaderboard" element={<Leaderboard />} />
       </Routes>
     </Router>
   );
