@@ -50,7 +50,7 @@ function VideoModule() {
   // After username is entered, show modules
   return (
     <div style={{ padding: "2rem", textAlign: "center" }}>
-      <h2>Learning Modules</h2>
+      <h1>Learning Modules</h1>
       <div
         style={{
           display: "flex",
