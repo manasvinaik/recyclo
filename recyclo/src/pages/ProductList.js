@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
 import "../styles/ProductList.css";
 
 export default function ProductList() {
@@ -46,7 +47,9 @@ export default function ProductList() {
   };
 
   return (
+    
     <div className="product-list-container">
+      <Navbar></Navbar>
       <div className="heading-row">
         <h1 className="main-heading">Eco-Friendly Products</h1>
         <input

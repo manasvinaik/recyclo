@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
 import "../styles/Cart.css";
 
 const Cart = () => {
@@ -46,6 +47,7 @@ const Cart = () => {
 
   return (
     <div className="cart-container">
+      <Navbar></Navbar>
       <h1 className="cart-title">Your Cart</h1>
 
       {cartItems.length === 0 ? (

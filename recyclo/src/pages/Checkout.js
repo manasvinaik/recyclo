@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
 import "../styles/Checkout.css";
 
 const Checkout = () => {
@@ -22,6 +23,7 @@ const Checkout = () => {
 
   return (
     <div className="checkout-container">
+      <Navbar></Navbar>
       <h1 className="checkout-title">Checkout</h1>
 
       {cartItems.length === 0 ? (

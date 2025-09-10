@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
 import "../styles/ProductDetail.css"
 function ProductDetail() {
   const { id } = useParams(); // get the product ID from URL
@@ -24,6 +25,7 @@ function ProductDetail() {
 
   return (
     <div style={styles.container}>
+      <Navbar></Navbar>
       <h1 style={styles.title}>{product.title}</h1>
       <img src={product.image} alt={product.title} style={styles.image} />
       <p style={styles.description}>{product.description}</p>
