@@ -57,7 +57,7 @@ body {
 .hero-section {
   padding: 4rem 2rem 2rem;
   text-align: center;
-  background: linear-gradient(135deg, var(--primary-green-light) 0%, var(--neutral-50) 50%, var(--accent-blue) 0%, transparent 100%);
+  background: linear-gradient(135deg, var(--primary-green-light) 0%, var(--neutral-100) 50%, var(--accent-green) 0%, transparent 100%);
   position: relative;
   overflow: hidden;
 }
